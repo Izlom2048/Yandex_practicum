@@ -1,1 +1,1 @@
-# Sprint_1
+# Tasks of yandex practicum
