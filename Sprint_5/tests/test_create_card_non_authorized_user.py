@@ -36,13 +36,12 @@ class TestCreateCard:
         driver.find_element(*AuthorizedUserLocators.USER_AVATAR).click()
         WebDriverWait(driver, 2).until(expected_conditions.element_to_be_clickable(PostAnAdPageLocators.NUMBERING_OF_PAGINATION_BUTTON))
         numbering_of_pagination = driver.find_element(*PostAnAdPageLocators.NUMBERING_OF_PAGINATION_BUTTON).text.split()[-1]
-        if numbering_of_pagination != '1':
-            for i in range(int(numbering_of_pagination) - 1):
-                WebDriverWait(driver, 2).until(expected_conditions.element_to_be_clickable(PostAnAdPageLocators.PAGINATION_BUTTON))
-                pagination_button = driver.find_element(*PostAnAdPageLocators.NUMBERING_OF_PAGINATION_BUTTON)
-                driver.execute_script("arguments[0].scrollIntoView();", pagination_button)
-                driver.find_element(*PostAnAdPageLocators.PAGINATION_BUTTON).click()
+        for i in range(int(numbering_of_pagination) - 1):
+            WebDriverWait(driver, 2).until(expected_conditions.element_to_be_clickable(PostAnAdPageLocators.PAGINATION_BUTTON))
+            pagination_button = driver.find_element(*PostAnAdPageLocators.NUMBERING_OF_PAGINATION_BUTTON)
+            driver.execute_script("arguments[0].scrollIntoView();", pagination_button)
+            driver.find_element(*PostAnAdPageLocators.PAGINATION_BUTTON).click()
         required_card = assigning_a_name_to_a_locator_finding_card(card_name)
         required_card_locator = (By.XPATH, required_card)
         WebDriverWait(driver, 2).until(expected_conditions.presence_of_element_located(required_card_locator))
-        assert driver.find_elements(*required_card_locator)
+        assert driver.find_element(*required_card_locator).is_displayed()

@@ -2,6 +2,7 @@ import random
 import string
 
 start_url = "https://qa-desk.stand.praktikum-services.ru/"
+
 current_url = 'https://qa-desk.stand.praktikum-services.ru/regiatration'
 
 existing_username = 'vbif542737@mail.ru'
